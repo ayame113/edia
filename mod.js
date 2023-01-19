@@ -3,10 +3,14 @@
 /// <reference lib="dom.iterable" />
 /// <reference lib="dom.asynciterable" />
 
-const { Chart, registerables } = await import("https://esm.sh/chart.js@3.2.0");
-const { default: zoomPlugin } = await import(
-  "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@3.2.0"
-);
+// const { Chart, registerables } = await import("https://esm.sh/chart.js@3.2.0");
+// const { default: zoomPlugin } = await import(
+//   "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@3.2.0"
+// );
+
+import { Chart, registerables } from "https://esm.sh/chart.js@3.2.0";
+import zoomPlugin from "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@3.2.0";
+
 Chart.register(...registerables, zoomPlugin);
 
 /** @type {NodeListOf<HTMLElement>} */
@@ -25,9 +29,12 @@ const { trains, stations } = formatStationOrder({
   rawTrains,
 });
 const timetable = getTimetable({ trains, stations, trainDetails });
+
+document.querySelector(".__diagram__extension__result__")?.remove();
 const el = renderTimetable(timetable);
-document.body.insertAdjacentElement("afterbegin", el);
-new Set(trainDetails.map((v) => v.trainName?.split(" ")[0]));
+el.classList.add("__diagram__extension__result__");
+document.querySelector(".paper_table_title")
+  ?.insertAdjacentElement("afterend", el);
 
 /** @param {NodeListOf<HTMLElement>} table */
 function domToRawTable(table) {
@@ -255,20 +262,11 @@ function formatStationOrder({ stationWithinterval, rawTrains }) {
         // 常陸鴻巣 905 ↖ここに上菅谷を挿入
         if (name === stationWithinterval[nextStop].name) {
           // 既に挿入済みの場合は何もしない、分岐関連付けのみ
-          // newStations[i].target.branchTo.push(newStations[nextStop].target);
           newStations[nextStop].target.branchTo = newStations[i].target;
         } else {
           if (
             !stationWithinterval[nextStop - 1].nextStopToMinTime.has(nextStop)
           ) {
-            // const newStation = {
-            //   name,
-            //   interval: minTime,
-            //   branchTo: [],
-            //   oldIndex: i,
-            // };
-            // newStations[nextStop].beforeInsert.unshift(newStation);
-            // newStations[i].target.branchTo.push(newStation);
             newStations[nextStop].beforeInsert.unshift({
               name,
               interval: minTime,
