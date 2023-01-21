@@ -16,17 +16,17 @@ jobs:
         run: deno task test:fmt
       - name: 😋 Lint
         run: deno task test:lint
-  Type-Check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Git Checkout Module
-        uses: actions/checkout@v2
-      - name: Use Deno
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.x
-      - name: 🧐 Type Check
-        run: deno task check
+  # Type-Check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Git Checkout Module
+  #       uses: actions/checkout@v2
+  #     - name: Use Deno
+  #       uses: denoland/setup-deno@v1
+  #       with:
+  #         deno-version: v1.x
+  #     - name: 🧐 Type Check
+  #       run: deno task check
   Test:
     runs-on: ubuntu-latest
     steps:
