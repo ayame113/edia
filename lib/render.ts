@@ -2,7 +2,7 @@
 /// <reference lib="dom.iterable" />
 /// <reference lib="dom.asynciterable" />
 
-import { Chart, registerables } from "https://esm.sh/chart.js@3.2.0";
+import { Chart, registerables } from "https://esm.sh/chart.js@4.2.0/";
 import zoomPlugin from "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@3.2.0";
 import { colorCodeFromTrainName } from "./util.ts";
 import { Timetable } from "./types.d.ts";
