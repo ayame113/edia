@@ -3,7 +3,7 @@
 時刻表をChart.jsによるダイヤグラムに変換する。
 
 ```ts
-import { render } from "https://deno.land/x/edia/lib/mod.ts";
+import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
 
 const table: NodeListOf<HTMLElement> = document.querySelectorAll(
   ".paper_table tr",
