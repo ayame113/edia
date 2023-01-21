@@ -5,6 +5,9 @@
 
 時刻表をChart.jsによるダイヤグラムに変換する。
 
+- ライブラリ：https://deno.land/x/edia
+- ドキュメント：https://deno.land/x/edia/lib/mod.ts
+
 ```ts
 import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
 
@@ -21,8 +24,8 @@ document.body.insertAdjacentElement("afterstart", el);
 - `build/`: TypeScriptビルド関連。
 - `etension/`: Chrome拡張用ファイル。
 - `lib/`: ライブラリ。
-- `deno.json`: Deno設定ファイル
-- `manifest.json`: Chrome拡張設定ファイル
+- `deno.json`: Deno設定ファイル。
+- `manifest.json`: Chrome拡張設定ファイル。
 
 ### 開発
 
