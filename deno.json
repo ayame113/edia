@@ -1,8 +1,8 @@
 {
   "tasks": {
-    "build": "deno run --allow-write=. --allow-read --allow-net=deno.land,esm.sh --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME ./build/run.ts",
-    "build:watch": "deno run --allow-write=. --allow-read --allow-net=deno.land,esm.sh --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME --watch=. ./build/run.ts",
-    "build:check": "deno run --allow-write=. --allow-read --allow-net=deno.land,esm.sh --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME ./build/check.ts",
+    "build": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME ./build/run.ts",
+    "build:watch": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME --watch=. ./build/run.ts",
+    "build:check": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS,XDG_CACHE_HOME,HOME ./build/check.ts",
     "test": "deno test",
     "test:lint": "deno lint",
     "test:fmt": "deno fmt --check",
