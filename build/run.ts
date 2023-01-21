@@ -9,7 +9,10 @@ async function build() {
 export const output = "../build/output.js";
 export const code = `// deno-fmt-ignore-file
 // deno-lint-ignore-file
-${(await build()).code}`;
+${
+  (await build()).code
+    .replace(/\/\/\# sourceMappingURL=data:application\/json;base64,.*\n/gm, "")
+}`;
 
 if (import.meta.main) {
   await Deno.writeTextFile(new URL(import.meta.resolve(output)), code);
