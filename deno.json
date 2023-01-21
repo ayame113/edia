@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "build": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS ./build/run.ts",
+    "build:watch": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS --watch=. ./build/run.ts",
+    "build:check": "deno run --allow-write=. --allow-read --allow-net --allow-env=DENO_DIR,LOCALAPPDATA,DENO_AUTH_TOKENS ./build/check.ts",
+    "test": "deno test",
+    "test:lint": "deno lint",
+    "test:fmt": "deno fmt --check",
+    "fmt": "deno fmt"
+  },
+  "lock": false
+}
