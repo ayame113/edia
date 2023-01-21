@@ -11,7 +11,7 @@ export const code = `// deno-fmt-ignore-file
 // deno-lint-ignore-file
 ${
   (await build()).code
-    .replace(/\/\/\# sourceMappingURL=data:application\/json;base64,.*\n/gm, "")
+    .replace(/\/\/\# sourceMappingURL=data:application\/json;base64,.*\n/g, "")
 }`;
 
 if (import.meta.main) {
