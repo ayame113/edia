@@ -1,5 +1,8 @@
 # edia
 
+[![Test](https://github.com/ayame113/edia/actions/workflows/test.yml/badge.svg)](https://github.com/ayame113/edia/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/ayame113/edia/branch/main/graph/badge.svg?token=w0x5nJxnWc)](https://codecov.io/github/ayame113/edia)
+
 時刻表をChart.jsによるダイヤグラムに変換する。
 
 ```ts
