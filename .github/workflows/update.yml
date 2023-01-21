@@ -1,11 +1,12 @@
 name: Update Deno Dependencies
 
 on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: "0 9 25 * *"
+  workflow_dispatch
+  # push:
+  #   branches:
+  #     - main
+  # schedule:
+  #   - cron: "0 9 25 * *"
 
 jobs:
   update-deno-dependencies:
