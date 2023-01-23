@@ -93,8 +93,44 @@ export function timeDiff(
   return res;
 }
 
+const colorMap = [
+  ["普通", "darkblue"],
+  ["快速 アクティ", "darkgoldenrod"],
+  ["快速 ラビット", "darkgoldenrod"],
+  ["快速 アーバン", "darkgoldenrod"],
+  ["快速", "dodgerblue"],
+  ["通勤快速", "slateblue"],
+  ["中央特快", "blue"],
+  ["通勤特別快速", "red"],
+  ["青梅特快", "green"],
+  ["特別快速", "darkorange"],
+  ["超快速", "darkorange"],
+  ["ホームライナー", "darkorange"],
+  ["急行", "seagreen"],
+  ["特急", "red"],
+  ["寝台特急", "palevioletred"],
+  ["新幹線", "red"],
+  ["はやぶさ", "forestgreen"],
+  ["はやて", "limegreen"],
+  ["やまびこ", "mediumseagreen"],
+  ["なすの", "lightgreen"],
+  ["こまち", "deeppink"],
+  ["つばさ", "darkmagenta"],
+  ["とき", "orangered"],
+  ["たにがわ", "darksalmon"],
+  ["かがやき", "blue"],
+  ["はくたか", "mediumslateblue"],
+  ["あさま", "lightsteelblue"],
+  ["つるぎ", "lightsteelblue"],
+  ["のぞみ", "darkorange"],
+  ["ひかり", "olive"],
+  ["こだま", "cornflowerblue"],
+  ["みずほ", "coral"],
+  ["さくら", "hotpink"],
+  ["バス", "blueviolet"],
+];
 export function colorCodeFromTrainName(
-  { trainName = "", calendar = "", facilities }: TrainDetails,
+  { trainName = "", calendar = "", trainNumber = "", facilities }: TrainDetails,
 ) {
   if (calendar.startsWith("時変")) {
     return "darkgray";
@@ -111,46 +147,12 @@ export function colorCodeFromTrainName(
     }
     if (facilities.some((facility) => facility.includes("グリーン車自由席"))) {
       return "darkblue";
+    } else if (trainNumber.endsWith("D")) {
+      return "sienna";
     } else {
       return "cadetblue";
     }
   }
-  const colorMap = [
-    ["普通", "darkblue"],
-    ["快速 アクティ", "darkgoldenrod"],
-    ["快速 ラビット", "darkgoldenrod"],
-    ["快速 アーバン", "darkgoldenrod"],
-    ["快速", "dodgerblue"],
-    ["通勤快速", "slateblue"],
-    ["中央特快", "blue"],
-    ["通勤特別快速", "red"],
-    ["青梅特快", "green"],
-    ["特別快速", "darkorange"],
-    ["超快速", "darkorange"],
-    ["ホームライナー", "darkorange"],
-    ["急行", "seagreen"],
-    ["特急", "red"],
-    ["寝台特急", "palevioletred"],
-    ["新幹線", "red"],
-    ["はやぶさ", "forestgreen"],
-    ["はやて", "limegreen"],
-    ["やまびこ", "mediumseagreen"],
-    ["なすの", "lightgreen"],
-    ["こまち", "deeppink"],
-    ["つばさ", "darkmagenta"],
-    ["とき", "orangered"],
-    ["たにがわ", "darksalmon"],
-    ["かがやき", "blue"],
-    ["はくたか", "mediumslateblue"],
-    ["あさま", "lightsteelblue"],
-    ["つるぎ", "lightsteelblue"],
-    ["のぞみ", "darkorange"],
-    ["ひかり", "olive"],
-    ["こだま", "cornflowerblue"],
-    ["みずほ", "coral"],
-    ["さくら", "hotpink"],
-    ["バス", "blueviolet"],
-  ];
 
   for (const [type, color] of colorMap) {
     if (trainName.startsWith(type)) {
