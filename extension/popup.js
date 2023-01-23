@@ -11,7 +11,7 @@ document.getElementById("showDiagram")
   });
 
 async function onRun() {
-  const { render } = await import(chrome.runtime.getURL("bundle.js"));
+  const { render } = await import(chrome.runtime.getURL("build/output.js"));
 
   /** @type {NodeListOf<HTMLElement>} */
   const table = document.querySelectorAll(".paper_table tr");

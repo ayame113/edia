@@ -2,14 +2,14 @@
 /// <reference lib="dom.iterable" />
 /// <reference lib="dom.asynciterable" />
 
-import { Chart, registerables } from "https://esm.sh/chart.js@3.2.0";
-import zoomPlugin from "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@3.2.0";
+import { Chart, registerables } from "https://esm.sh/chart.js@4.2.0";
+import zoomPlugin from "https://esm.sh/chartjs-plugin-zoom@2.0.0?deps=chart.js@4.2.0";
 import { colorCodeFromTrainName } from "./util.ts";
 import { Timetable } from "./types.d.ts";
 
 Chart.register(...registerables, zoomPlugin);
 
-export function renderTimetable({ stations, trains }: Timetable) {
+export function renderTimetable({ stations, trains }: Timetable, href: string) {
   // グラフ上の高さは、上から順番になるように負の値にする
   let currentHeight = 0;
   const stationToHeight = stations.map(({ interval }) => {
@@ -82,6 +82,8 @@ export function renderTimetable({ stations, trains }: Timetable) {
   new Chart(el, {
     type: "scatter",
     options: {
+      animation: false,
+      responsiveAnimationDuration: 0,
       scales: {
         x: {
           type: "linear",
@@ -110,6 +112,21 @@ export function renderTimetable({ stations, trains }: Timetable) {
       plugins: {
         legend: {
           display: false,
+        },
+        subtitle: {
+          display: true,
+          text: [
+            `Created by Edia on ${
+              new Date().toLocaleDateString("en", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            } ◆この画像は非公式です。`,
+            `出典：${href}`,
+          ],
+          position: "bottom",
+          align: "end",
         },
         // @ts-expect-error: for wrong type
         zoom: {
@@ -169,6 +186,8 @@ export function renderTimetable({ stations, trains }: Timetable) {
           },
         },
       },
+      responsive: true,
+      maintainAspectRatio: false,
     },
     data: { datasets },
     plugins: [{
