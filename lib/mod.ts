@@ -7,7 +7,14 @@ import { renderTimetable } from "./render.ts";
 
 export function render(table: NodeListOf<HTMLElement>) {
   const timetable = getTimetable(table);
-  return renderTimetable(timetable);
+  const wrapper = document.createElement("div");
+  wrapper.append(renderTimetable(timetable, location.href));
+  Object.assign(wrapper.style, {
+    height: "90vh",
+    border: "1px solid black",
+    margin: "32px 0",
+  });
+  return wrapper;
 }
 
 export { getTimetable } from "./timetable.ts";
