@@ -14,7 +14,7 @@ import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
 const table: NodeListOf<HTMLElement> = document.querySelectorAll(
   ".paper_table tr",
 );
-const el = await render(table);
+const el = await render(table, location.href);
 document.body.insertAdjacentElement("afterstart", el);
 ```
 
