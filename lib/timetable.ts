@@ -17,8 +17,12 @@ import type {
   TrainDetails,
 } from "./types.d.ts";
 
-/** HTMLから時刻表を生成する */
-export function getTimetable(table: NodeListOf<HTMLElement>) {
+/**
+ * HTMLから時刻表を生成する
+ * @param table 時刻表データが入ったtable要素
+ * @returns 時刻表データ
+ */
+export function getTimetable(table: HTMLTableElement) {
   const rawTable = domToRawTable(table);
   const { stationIndex, rawTimetable, trainDetails } = rawTableToTimetable(
     rawTable,
@@ -46,9 +50,10 @@ export function getTimetable(table: NodeListOf<HTMLElement>) {
 }
 
 /** HTMLの表からデータを文字列の配列として抜き出す */
-export function domToRawTable(table: NodeListOf<HTMLElement>) {
+export function domToRawTable(table: HTMLTableElement) {
+  const rows = table.querySelectorAll("tr");
   const res: (string | undefined)[][][] = [];
-  for (const tr of iterate(table)) {
+  for (const tr of iterate(rows)) {
     const column: (string | undefined)[][] = [];
     for (const td of iterate(tr.children)) {
       const cell: (string | undefined)[] = [];
@@ -161,9 +166,9 @@ export function removeDuplicateStation(
     stations.at(-1)?.originalIndex.push({ i, type: station.type });
   }
   const rawTrains: Train[] = rawTimetable.map((train) => {
-    return stations.map(({ name, originalIndex }) => {
+    return stations.map(({ /*name,*/ originalIndex }) => {
       const res: Train[number] = {
-        name,
+        // name,
         type: "outOfRoute", // デフォルト値
         trackNumber: null,
         arrival: undefined,
@@ -381,7 +386,7 @@ export function formatStationOrder(
             const { type } = timatable[formattedStations[j].oldIndex];
             if (type === "pass" || type === "stop") {
               return {
-                name: timatable[formattedStations[i].oldIndex].name,
+                // name: timatable[formattedStations[i].oldIndex].name,
                 type: "outOfRoute",
                 trackNumber: null,
                 arrival: undefined,
@@ -398,7 +403,7 @@ export function formatStationOrder(
             const { type } = timatable[formattedStations[j].oldIndex];
             if (type === "pass" || type === "stop") {
               return {
-                name: timatable[formattedStations[i].oldIndex].name,
+                // name: timatable[formattedStations[i].oldIndex].name,
                 type: "outOfRoute",
                 trackNumber: null,
                 arrival: undefined,

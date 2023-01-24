@@ -9,7 +9,16 @@ import { Timetable } from "./types.d.ts";
 
 Chart.register(...registerables, zoomPlugin);
 
-export function renderTimetable({ stations, trains }: Timetable, href: string) {
+/**
+ * 時刻表データをcanvasにダイヤグラムとしてレンダリングする
+ * @param timetable 時刻表データ
+ * @param source 出典を示す文字列
+ * @returns ダイヤグラムがレンダリングされたcanvas
+ */
+export function renderTimetable(
+  { stations, trains }: Timetable,
+  source: string,
+) {
   // グラフ上の高さは、上から順番になるように負の値にする
   let currentHeight = 0;
   const stationToHeight = stations.map(({ interval }) => {
@@ -23,8 +32,7 @@ export function renderTimetable({ stations, trains }: Timetable, href: string) {
   const datasets = [];
   for (const [trainIndex, train] of trains.entries()) {
     const color = colorCodeFromTrainName(train);
-    /** @type {{x: number; y: number}[]} */
-    let trainArray = [];
+    let trainArray: { x: number; y: number }[] = [];
     for (const [i, station] of train.timetable.entries()) {
       if (station.type === "outOfRoute") {
         if (trainArray.length) {
@@ -123,7 +131,7 @@ export function renderTimetable({ stations, trains }: Timetable, href: string) {
                 day: "numeric",
               })
             } ◆この画像は非公式です。`,
-            `出典：${href}`,
+            `出典：${source}`,
           ],
           position: "bottom",
           align: "end",
