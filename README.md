@@ -3,7 +3,10 @@
 [![Test](https://github.com/ayame113/edia/actions/workflows/test.yml/badge.svg)](https://github.com/ayame113/edia/actions/workflows/test.yml)
 [![codecov](https://codecov.io/github/ayame113/edia/branch/main/graph/badge.svg?token=w0x5nJxnWc)](https://codecov.io/github/ayame113/edia)
 
-時刻表をChart.jsによるダイヤグラムに変換する。
+![サンプル画像](./extension/screenshot.png)
+![インストール方法](./extension/install.png)
+
+時刻表をChart.jsによるダイヤグラムに変換します。
 
 - ライブラリ：https://deno.land/x/edia
 - ドキュメント：https://deno.land/x/edia/lib/mod.ts
@@ -11,9 +14,7 @@
 ```ts
 import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
 
-const table: NodeListOf<HTMLElement> = document.querySelectorAll(
-  ".paper_table tr",
-);
+const table = document.querySelectorAll(".paper_table tr");
 const el = await render(table, location.href);
 document.body.insertAdjacentElement("afterstart", el);
 ```
@@ -28,6 +29,8 @@ document.body.insertAdjacentElement("afterstart", el);
 - `manifest.json`: Chrome拡張設定ファイル。
 
 ### 開発
+
+[Deno](https://deno.land/)をインストールする必要があります。
 
 ```shell
 # TypeScriptをビルドしてjsファイルを生成
