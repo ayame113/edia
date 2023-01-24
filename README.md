@@ -7,11 +7,10 @@
 
 - ライブラリ：https://deno.land/x/edia
 - ドキュメント：https://deno.land/x/edia/lib/mod.ts
-- 拡張機能:
+- Chrome拡張機能:
   https://chrome.google.com/webstore/detail/edia/nggncccbpkmeojkfmhjjjimbfppfbgbe/related?hl=ja
 
 ![サンプル画像](./extension/screenshot.png)
-![インストール方法](./extension/install.png)
 
 ```ts
 import { generateDiagram } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
