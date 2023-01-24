@@ -14,11 +14,11 @@
 ![インストール方法](./extension/install.png)
 
 ```ts
-import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
+import { generateDiagram } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
 
-const table = document.querySelectorAll(".paper_table tr");
-const el = await render(table, location.href);
-document.body.insertAdjacentElement("afterstart", el);
+const table = document.querySelector(".paper_table");
+const el = await generateDiagram(table as HTMLTableElement);
+document.body.insertAdjacentElement("afterbegin", el);
 ```
 
 ### ディレクトリ構成

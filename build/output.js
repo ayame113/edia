@@ -290,8 +290,9 @@ function getTimetable(table) {
     };
 }
 function domToRawTable(table) {
+    const rows = table.querySelectorAll("tr");
     const res = [];
-    for (const tr of iterate(table)){
+    for (const tr of iterate(rows)){
         const column = [];
         for (const td of iterate(tr.children)){
             const cell = [];
@@ -385,9 +386,8 @@ function removeDuplicateStation({ rawTimetable , stationIndex  }) {
         });
     }
     const rawTrains = rawTimetable.map((train)=>{
-        return stations.map(({ name: name1 , originalIndex  })=>{
+        return stations.map(({ originalIndex  })=>{
             const res = {
-                name: name1,
                 type: "outOfRoute",
                 trackNumber: null,
                 arrival: undefined,
@@ -527,7 +527,6 @@ function formatStationOrder({ stationWithInterval , rawTrains  }) {
                     const { type  } = timatable[formattedStations[j].oldIndex];
                     if (type === "pass" || type === "stop") {
                         return {
-                            name: timatable[formattedStations[i].oldIndex].name,
                             type: "outOfRoute",
                             trackNumber: null,
                             arrival: undefined,
@@ -544,7 +543,6 @@ function formatStationOrder({ stationWithInterval , rawTrains  }) {
                     const { type: type1  } = timatable[formattedStations[j1].oldIndex];
                     if (type1 === "pass" || type1 === "stop") {
                         return {
-                            name: timatable[formattedStations[i].oldIndex].name,
                             type: "outOfRoute",
                             trackNumber: null,
                             arrival: undefined,
@@ -10852,7 +10850,7 @@ var Bn1 = {
     zoomRectFunctions: Y1
 };
 xt.register(...Tc, Bn1);
-function renderTimetable({ stations , trains  }, href) {
+function renderTimetable({ stations , trains  }, source) {
     let currentHeight = 0;
     const stationToHeight = stations.map(({ interval  })=>{
         const graphInterval = interval === Infinity ? 1 : interval;
@@ -10950,7 +10948,7 @@ function renderTimetable({ stations , trains  }, href) {
                             month: "long",
                             day: "numeric"
                         })} ◆この画像は非公式です。`,
-                        `出典：${href}`
+                        `出典：${source}`
                     ],
                     position: "bottom",
                     align: "end"
@@ -11035,7 +11033,7 @@ function renderTimetable({ stations , trains  }, href) {
     });
     return el;
 }
-function render(table) {
+function generateDiagram(table) {
     const timetable = getTimetable(table);
     const wrapper = document.createElement("div");
     wrapper.append(renderTimetable(timetable, location.href));
@@ -11048,4 +11046,4 @@ function render(table) {
 }
 export { getTimetable as getTimetable };
 export { renderTimetable as renderTimetable };
-export { render as render };
+export { generateDiagram as generateDiagram };
