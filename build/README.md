@@ -7,3 +7,6 @@
 - `build/output.js`:
   `build/run.ts`から生成されるファイル。拡張機能で使用されます。
 - `build/check.ts`: `build/output.js`が最新かどうかCIでチェックするスクリプト。
+
+ローカルでビルドしたにもかかわらずCIで`Did you forget to run`deno task
+build`?`と表示される場合は、場合はesm.shのローカルキャッシュが古い場合があります。`deno cache --reload --check ./lib/mod.ts`を試してみてください。
