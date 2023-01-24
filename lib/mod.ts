@@ -77,4 +77,4 @@ export function generateDiagram(table: HTMLTableElement) {
 
 export { getTimetable } from "./timetable.ts";
 export { renderTimetable } from "./render.ts";
-export type { StationIndex, Timetable, Train } from "./types.d.ts";
+export type { Stations, Timetable, Train } from "./types.d.ts";
