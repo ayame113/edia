@@ -3,13 +3,15 @@
 [![Test](https://github.com/ayame113/edia/actions/workflows/test.yml/badge.svg)](https://github.com/ayame113/edia/actions/workflows/test.yml)
 [![codecov](https://codecov.io/github/ayame113/edia/branch/main/graph/badge.svg?token=w0x5nJxnWc)](https://codecov.io/github/ayame113/edia)
 
-![サンプル画像](./extension/screenshot.png)
-![インストール方法](./extension/install.png)
-
 時刻表をChart.jsによるダイヤグラムに変換します。
 
 - ライブラリ：https://deno.land/x/edia
 - ドキュメント：https://deno.land/x/edia/lib/mod.ts
+- 拡張機能:
+  https://chrome.google.com/webstore/detail/edia/nggncccbpkmeojkfmhjjjimbfppfbgbe/related?hl=ja
+
+![サンプル画像](./extension/screenshot.png)
+![インストール方法](./extension/install.png)
 
 ```ts
 import { render } from "https://deno.land/x/edia@$MODULE_VERSION/lib/mod.ts";
